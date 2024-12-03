@@ -1,5 +1,6 @@
 package com.thinkConstrictive.rest_demo.service.impl;
 
+import com.thinkConstrictive.rest_demo.exception.CloudVendorNotFound;
 import com.thinkConstrictive.rest_demo.model.CloudVendor;
 import com.thinkConstrictive.rest_demo.repository.CloudVendorRepository;
 import com.thinkConstrictive.rest_demo.service.CloudVendorService;
@@ -39,6 +40,9 @@ public class CloudVendorServiceImpl implements CloudVendorService {
 
     @Override
     public CloudVendor getCloudVendor(String cloudVendorId) {
+        if(cloudVendorRepository.findById(cloudVendorId).isEmpty()){
+            throw new CloudVendorNotFound("Request Cloud Vendor does not exist");
+        }
         return cloudVendorRepository.findById(cloudVendorId).get();
     }
 
