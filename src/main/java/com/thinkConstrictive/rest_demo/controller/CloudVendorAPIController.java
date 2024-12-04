@@ -50,4 +50,5 @@ public class CloudVendorAPIController {
         cloudVendorService.deleteCloudVendor(vendorId);
         return "Cloud Vendor deleted!";
     }
+
 }
